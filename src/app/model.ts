@@ -39,3 +39,5 @@ modules.entreprise={label:'Mon entreprise',table:'company_profiles',fields:compa
 modules.facturation.fields=modules.facturation.fields.map(f=>f.key==='number'?{...f,required:false}:f);
 modules.facturation.fields.splice(2,0,{key:'client_id',label:'Importer un client',table:'clients'});
 modules.facturation.fields.push({key:'issuer_legal_form',label:'Émetteur — forme juridique'},{key:'issuer_patente',label:'Émetteur — patente'},{key:'issuer_cnss',label:'Émetteur — CNSS'},{key:'issuer_capital',label:'Émetteur — capital social'},{key:'issuer_website',label:'Émetteur — site internet'},{key:'issuer_logo_data_url',label:'Logo',type:'hidden'},{key:'client_phone',label:'Client — téléphone'},{key:'client_tax_identifier',label:'Client — IF'},{key:'client_commercial_register',label:'Client — RC et ville'});
+
+modules.facturation.fields.push({key:'internal_partner_details',label:'Informations internes client / loueur (non imprimées sur la facture)',type:'textarea'});
