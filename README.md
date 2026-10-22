@@ -25,7 +25,7 @@ Tous les montants sont en dirhams marocains (MAD), avec deux décimales, y compr
 
 Les trajets comportent commande/BL, sous-traitant, marchandise, poids, adresses, livraison et instructions. Les véhicules comportent charge utile, assurance et contrôle technique ; les loueurs disposent de leurs coordonnées et identifiants d’entreprise ; les chauffeurs disposent des informations du permis ; le carburant comporte station et justificatif.
 
-La fiche de facturation détaillée permet l’impression ou l’enregistrement en PDF via le navigateur : émetteur, client, adresses, ICE/IF/RC, prestation, dates, règlement, banque/RIB, HT, TVA et TTC. Le taux de TVA est saisi explicitement et n’est pas présumé. Les identifiants, mentions et taux applicables doivent être vérifiés avant émission. Pas encore de facturation électronique, de verrouillage comptable ou de numérotation automatique.
+La fiche de facturation détaillée permet l’impression ou l’enregistrement en PDF via le navigateur : émetteur, client, adresses, ICE/IF/RC, prestation, dates, règlement, banque/RIB, HT, TVA et TTC. Le taux de TVA est saisi explicitement et n’est pas présumé. Les identifiants, mentions et taux applicables doivent être vérifiés avant émission. La numérotation est automatique ; la facturation électronique et le verrouillage comptable complet ne sont pas inclus.
 
 La marge contributive exclut les loyers mensuels et charges fixes : ce n’est pas un résultat net comptable. Aucun module de devis commerciaux n’a été ajouté.
 
@@ -42,3 +42,13 @@ Dans Facturation, choisir le trajet pour reprendre le client, le prix de vente e
 ## Vérification
 
 `npm run typecheck` et `npm run build`. Avant production, vérifier avec deux comptes distincts que les lectures, modifications et associations croisées sont refusées ; vérifier un cycle complet loueur → véhicule → chauffeur → trajet → carburant → facture. Aucun jeu de données fictif n’est injecté.
+
+## Mon entreprise, logo et numérotation
+
+Compléter « Mon entreprise » : raison sociale, forme juridique, adresse, contacts, ICE, IF, RC et ville, patente, CNSS, capital social, coordonnées bancaires et mentions. Importer un logo PNG, JPEG ou WebP de 250 Ko maximum. Profil et logo sont privés et protégés par RLS.
+
+Les nouvelles factures reprennent les coordonnées et le logo de votre entreprise. Choisir directement un client pour ses informations fiscales, ses coordonnées et conditions ; choisir un trajet pour reprendre aussi la prestation et le montant. Les coordonnées émetteur, client et le logo sont enregistrés avec la facture ; les changements ultérieurs des fiches ne réécrivent pas les anciens documents. Le bouton « Reprendre les informations actuelles de mon entreprise » permet une mise à jour explicite. Les coordonnées bancaires de l’émetteur ne sont jamais remplacées par celles du client.
+
+Le numéro est attribué au premier enregistrement : FAC-AAAA-000001, compteur propre au compte et à l’année de la date d’émission. Le compteur privé est atomique ; deux enregistrements simultanés ne reçoivent pas le même numéro. Le numéro reste fixe ; changer l’année d’une facture déjà numérotée est refusé. Une suppression ne permet pas de réutiliser son numéro. Les brouillons sont donc également numérotés à l’enregistrement.
+
+Les fiches clients, loueurs, véhicules, chauffeurs, carburant et trajets disposent de « Détail / Imprimer ». Ces fiches internes peuvent contenir des informations de gestion confidentielles. Les factures disposent de leur propre présentation imprimable avec logo.
